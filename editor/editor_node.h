@@ -33,8 +33,8 @@
 #include "core/object/script_language.h"
 #include "core/templates/safe_refcount.h"
 #include "editor/editor_data.h"
-#include "editor/editor_folding.h"
 #include "editor/plugins/editor_plugin.h"
+#include "editor/settings/editor_folding.h"
 
 typedef void (*EditorNodeInitCallback)();
 typedef void (*EditorPluginInitializeCallback)();
@@ -376,6 +376,7 @@ private:
 	Node *_last_instantiated_scene = nullptr;
 
 	ConfirmationDialog *confirmation = nullptr;
+	bool stop_project_confirmation = false;
 	Button *confirmation_button = nullptr;
 	ConfirmationDialog *save_confirmation = nullptr;
 	ConfirmationDialog *import_confirmation = nullptr;
@@ -598,6 +599,7 @@ private:
 	void _discard_changes(const String &p_str = String());
 	void _scene_tab_closed(int p_tab);
 	void _cancel_close_scene_tab();
+	void _cancel_confirmation();
 
 	void _prepare_save_confirmation_popup();
 
